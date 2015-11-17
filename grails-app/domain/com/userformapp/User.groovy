@@ -4,11 +4,10 @@ class User {
 
     String userLogin
     String userEmail
-    BigDecimal userSum
+    BigDecimal userCalc
 
     static constraints = {
         userLogin blank: false
-        userEmail email: true
-        userSum size: 0..20000
+        userEmail blank: false, email: true
     }
 }
