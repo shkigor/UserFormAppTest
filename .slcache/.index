@@ -4780,3 +4780,4 @@ n:6413:org/codehaus/groovy/grails/orm/support/GrailsTransactionTemplate
 n:4931:org/springframework/transaction/support/TransactionTemplate
 n:462:org/springframework/transaction/support/TransactionOperations
 n:614:org/springframework/transaction/TransactionException
+n:2874:org/codehaus/groovy/grails/compiler/validation/ValidateableTransformation
