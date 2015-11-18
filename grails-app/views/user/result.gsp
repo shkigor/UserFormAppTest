@@ -18,9 +18,9 @@
     <div class="flash">${flash.message}</div>
 </g:if>
 
-<p>${user.userLogin}</p>
-<p>${user.userEmail}</p>
-<p>${user.userCalc}</p>
+<p>${user?.userLogin}</p>
+<p>${user?.userEmail}</p>
+<p>${user?.userCalc}</p>
 
 </body>
 </html>

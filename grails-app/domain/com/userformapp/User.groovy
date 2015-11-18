@@ -7,7 +7,8 @@ class User {
     BigDecimal userCalc
 
     static constraints = {
-        userLogin blank: false
-        userEmail blank: false, email: true
+        userLogin blank: false, unique: true
+        userEmail blank: false, email: true, unique: true
+        userCalc nullable: false
     }
 }
