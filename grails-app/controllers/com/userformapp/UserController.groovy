@@ -38,8 +38,16 @@ class UserController {
         User newUser
 
         try {
-            newUser = userService.createAndCalculateUser(ucc)
-            flash.message = "controller.welcome" + "${newUser.userLogin}"
+            newUser = new User(ucc.properties)
+            def commission = userService.calculateUserCommission(ucc.seniority, ucc.commission)
+            def salary = userService.calculateSalary(ucc.seniority, commission, ucc.sum)
+            newUser.userCalc = salary
+            userService.saveUser(newUser)
+
+//            def messages = ResourceBundle.getBundle('messages')
+//            def message = messages.getString('controller.welcome')
+            def message = message(code: "controller.welcome")
+            flash.message = "$message ${newUser.userLogin}"
         } catch (UserException ue) {
             flash.message = ue.message
         }
