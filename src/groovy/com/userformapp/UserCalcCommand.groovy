@@ -14,19 +14,17 @@ class UserCalcCommand {
     BigDecimal commission
     BigDecimal sum
 
+
+    static constraintsClosure = { val, obj ->
+        if (!obj.seniority && !obj.commission) {
+            return "seniority.and.commission.cannot.be.empty.together"
+        }
+    }
+
     static constraints = {
         importFrom User
-        seniority size: 0..30, nullable: true, validator: { seniority, user ->
-            if (!seniority && !user.commission) {
-                return false
-            } else {
-                return true
-            }
-        }
-        commission min: 0.0, max: 1.0, scale: 2, nullable: true, validator: { commission, user ->
-            if (!commission && !user.seniority) return false
-            else return true
-        }
+        seniority size: 0..30, nullable: true, validator: constraintsClosure
+        commission min: 0.0, max: 1.0, scale: 2, nullable: true, validator: constraintsClosure
         sum min: 0.0, max: 20000.0, scale: 2
     }
 

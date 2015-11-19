@@ -18,19 +18,33 @@ class UserController {
 //        }
     }
 
-    def index() {
 
+
+    def index() {
     }
 
+
+
     def calc(UserCalcCommand ucc) {
-        if (request.method != "POST") {
-            return
-        }
+//        if (request.method != "POST") {
+//            return
+//        }
 
         if (ucc.hasErrors()) {
             render view: "index", model: [user: ucc]
             return
         }
+
+        User newUser
+
+        try {
+            newUser = userService.createAndCalculateUser(ucc)
+            flash.message = "controller.welcome" + "${newUser.userLogin}"
+        } catch (UserException ue) {
+            flash.message = ue.message
+        }
+
+        redirect action: "result", id: newUser?.id
 
 //                def user = new User(ucc.properties)
 //
@@ -53,43 +67,6 @@ class UserController {
 //                    return [user: ucc]
 //                }
 ////                render "<h1>Real Programmers drink beer</h1>"
-
-        User newUser
-
-        try {
-            newUser = userService.createUser(ucc)
-            flash.message = "Welcome aboard, ${newUser.userLogin}"
-        } catch (UserException ue) {
-            flash.message = ue.message
-        }
-
-        redirect action: "result", id: newUser?.id
     }
 }
 
-
-//class UserCalcCommand {
-//
-//    String userLogin
-//    String userEmail
-//    Integer seniority
-//    BigDecimal commission
-//    BigDecimal sum
-//
-//    static constraints = {
-//        importFrom User
-//        seniority size: 0..30, nullable: true, validator: { seniority, user ->
-//            if (!seniority && !user.commission) {
-//                return false
-//            } else {
-//                return true
-//            }
-//        }
-//        commission min: 0.0, max: 1.0, scale: 2, nullable: true, validator: { commission, user ->
-//            if (!commission && !user.seniority) return false
-//            else return true
-//        }
-//        sum min: 0.0, max: 20000.0, scale: 2
-//    }
-//
-//}

@@ -11,6 +11,10 @@ class UserException extends RuntimeException {
 @Transactional
 class UserService {
 
+    static final Integer DEFAULT_STAG = 0
+    static final Integer DEFAULT_GOOD_STAG = 20
+    static final BigDecimal DEFAULT_COMMISSION = 0.05
+
     User saveUser(String userLogin, String userEmail, BigDecimal userCalc) {
         def user = new User(userLogin: userLogin, userEmail: userEmail, userCalc: userCalc)
         if (user.validate() && user.save()) {
@@ -21,16 +25,16 @@ class UserService {
     }
 
     BigDecimal calculate(Integer seniority, BigDecimal commission, BigDecimal sum) {
-        seniority = seniority ? seniority : 0
-        commission = commission ? commission : 0.05
-        if (seniority >= 20) {
+        seniority = seniority ? seniority : DEFAULT_STAG
+        commission = commission ? commission : DEFAULT_COMMISSION
+        if (seniority >= DEFAULT_GOOD_STAG) {
             commission = commission * 2
         }
 
         return sum * commission + seniority
     }
 
-    User createUser(UserCalcCommand ucc) {
+    User createAndCalculateUser(UserCalcCommand ucc) {
         def user = new User(ucc.properties)
 
 //        int seniority = ucc.seniority ? ucc.seniority : 0

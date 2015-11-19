@@ -4781,3 +4781,9 @@ n:4931:org/springframework/transaction/support/TransactionTemplate
 n:462:org/springframework/transaction/support/TransactionOperations
 n:614:org/springframework/transaction/TransactionException
 n:2874:org/codehaus/groovy/grails/compiler/validation/ValidateableTransformation
+n:1567:java_io_File$equals$9
+n:1487:org/apache/commons/logging/Log$debug
+n:1409:java_io_File$getCanonicalPath$10
+n:1545:org/apache/commons/logging/Log$isDebugEnabled$0
+n:2186:org/codehaus/groovy/grails/commons/GrailsApplication$addArtefact
+n:2275:org/codehaus/groovy/grails/commons/GrailsApplication$isArtefactOfType$0
