@@ -19,10 +19,8 @@ class UserController {
     }
 
 
-
     def index() {
     }
-
 
 
     def calc(UserCalcCommand ucc) {
@@ -36,20 +34,17 @@ class UserController {
         }
 
         User newUser
+//        User newUser = new User(ucc.properties)
+//        def commission = userService.calculateUserCommission(ucc.seniority, ucc.commission)
+        def salary = userService.calculateSalary(ucc.seniority, ucc.commission, ucc.sum)
 
         try {
-            newUser = new User(ucc.properties)
-            def commission = userService.calculateUserCommission(ucc.seniority, ucc.commission)
-            def salary = userService.calculateSalary(ucc.seniority, commission, ucc.sum)
-            newUser.userCalc = salary
-            userService.saveUser(newUser)
-
-//            def messages = ResourceBundle.getBundle('messages')
-//            def message = messages.getString('controller.welcome')
+            newUser = userService.saveUser(ucc.userLogin, ucc.userEmail, salary)
             def message = message(code: "controller.welcome")
             flash.message = "$message ${newUser.userLogin}"
         } catch (UserException ue) {
-            flash.message = ue.message
+//        } catch (RuntimeException ue) {
+            flash.message = "${ue.message} ${ue.user}"
         }
 
         redirect action: "result", id: newUser?.id

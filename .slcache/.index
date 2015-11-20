@@ -4787,3 +4787,6 @@ n:1409:java_io_File$getCanonicalPath$10
 n:1545:org/apache/commons/logging/Log$isDebugEnabled$0
 n:2186:org/codehaus/groovy/grails/commons/GrailsApplication$addArtefact
 n:2275:org/codehaus/groovy/grails/commons/GrailsApplication$isArtefactOfType$0
+n:902:groovy/transform/ToString
+n:14021:org/codehaus/groovy/transform/ToStringASTTransformation
+n:3569:org/codehaus/groovy/transform/CanonicalASTTransformation

@@ -20,7 +20,7 @@
 
 <p>${user?.userLogin}</p>
 <p>${user?.userEmail}</p>
-<p>${user?.userCalc}</p>
+<p>${user?.salary}</p>
 
 </body>
 </html>
